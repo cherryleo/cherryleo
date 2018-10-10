@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div id="lists"></div>
+
+<script type="text/babel">
+  const { Card} = antd;
+  ReactDOM.render(
+    <div>
+      {{ range .Pages }}
+        <Card
+          title="{{.Title}}"
+          extra={ {{ printf "<a href=%q>More</a>" .Permalink | safeHTMLAttr }} }
+        >
+          <p>{{.Date.Format "2006-01-02"}}</p>
+        </Card>
+      {{ end }}
+    </div>,
+  document.getElementById('lists'));
+</script> 
+{{ end }}
