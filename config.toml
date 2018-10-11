@@ -1,4 +1,18 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
-title = "Hugo"
+title = "X的个人网站"
 theme = "sweetcherry"
+
+[menu]
+  [[menu.main]]
+    name = "Kubernetes"
+    identifier = "kubernetes"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/kubernetes/"
+    weight = -110
+
+  [[menu.main]]
+    name = "关于"
+    pre = "<i class='fa fa-road'></i>"
+    url = "/about/"
+    weight = -100

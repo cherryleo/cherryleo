@@ -1,28 +1,13 @@
-<div id="header"></div>
-
-<script type="text/babel">
-const { Layout, Menu } = antd;
-const { Header } = Layout;
-const styles = {
-  lineHeight: '64px'
-};
-ReactDOM.render(
-  <Layout className="layout">
-    <Header>
-      <div className="logo" />
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        style={styles}
-      >
-        {{ $BaseURL := .Site.BaseURL }} 
-        {{ range $key, $value := .Site.Menus }}
-          <Menu.Item key="{{ $key }}">
-            <a href="{{ $BaseURL }}/{{ $key }}">{{ $key }}</a>
-          </Menu.Item>
-        {{ end }}
-      </Menu>
-    </Header>
-  </Layout>,
-  document.getElementById('header'));
-</script>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand col-2" href="{{ .Site.BaseURL  }}">{{ .Site.Title }}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      {{ range .Site.Menus.main }}
+      <a class="nav-item nav-link" href="{{ .URL }}">{{ .Name }}</a>
+      {{ end }}
+    </div>
+  </div>
+</nav>

@@ -1,32 +1,15 @@
-<div id="sider"></div>
+{{ $currentPage := . }}
+<nav class="nav flex-column">
+{{ if not .IsPage }}
+  {{ range .Pages }}
+  <a class="nav-link active" href="{{.Permalink}}">{{.Title}}</a>
+  {{ end }}
+{{ else }}
+  {{ range .Parent.Pages }}
 
-<script type="text/babel">
-  const { Layout, Menu, Icon } = antd;
-  const { Header, Content, Footer, Sider } = Layout;
-  const styles = {
-    overflow: 'auto', 
-    height: '100vh', 
-    position: 'fixed', 
-    left: 0
-  }
+  <a {{ if eq $currentPage . }} class="nav-link disabled" {{ else }} class="nav-link active" {{end}}
+   href="{{.Permalink}}">{{.Title}}</a>
+  {{ end }}
+{{ end }}
+</nav>
 
-  ReactDOM.render(
-    <Sider>
-      <div className="logo" />
-      <Menu theme="dark" mode="inline" style={styles}>
-        <Menu.Item key="1">
-          <Icon type="user" />
-          <span className="nav-text">nav 1</span>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <Icon type="video-camera" />
-          <span className="nav-text">nav 2</span>
-        </Menu.Item>
-        <Menu.Item key="3">
-          <Icon type="upload" />
-          <span className="nav-text">nav 3</span>
-        </Menu.Item>
-      </Menu>
-    </Sider>,
-  document.getElementById('sider'));
-</script>
