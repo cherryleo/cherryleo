@@ -1,21 +1,3 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    {{ template "breadcrumbnav" (dict "p1" . "p2" .) }}
-  </ol>
-  {{ define "breadcrumbnav" }}
-    {{ if .p1.Parent }}
-      {{ template "breadcrumbnav" (dict "p1" .p1.Parent "p2" .p2 )  }}
-    {{ else if not .p1.IsHome }}
-      {{ template "breadcrumbnav" (dict "p1" .p1.Site.Home "p2" .p2 ) }}
-    {{ end }}
-
-    {{ if .p1.IsHome }}
-    {{ else if eq .p1 .p2 }} 
-      <li class="breadcrumb-item">{{ .p1.Title }} 
-    {{ else }}
-      <li class="breadcrumb-item active" aria-current="page">
-        <a href="{{ .p1.Permalink }}">{{ .p1.Title }}</a>
-    {{ end }}
-    </li>
-  {{ end }}
-</nav>
+<aside>
+  {{ .TableOfContents }}
+</aside>

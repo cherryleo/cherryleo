@@ -1,10 +1,6 @@
 <nav class="header">
-  <div class="brand">
-    <a href="{{ .Site.BaseURL  }}">{{ .Site.Title }}</a>
-  </div>
-  <div class="menu">
-    {{ range .Site.Menus.main }}
-    <a href="{{ .URL }}">{{ .Name }}</a>
-    {{ end }}
-  </div>
+  <a id="brand" href="{{ .Site.BaseURL  }}">{{ .Site.Title }}</a>
+  {{ range .Site.Menus.main }}
+  <a class="menu" href="{{ .URL }}">{{ .Name }}</a>
+  {{ end }}
 </nav>

@@ -1,7 +1,9 @@
 baseURL = "http://example.org/"
-languageCode = "en-us"
+languageCode = "zh-CN"
 title = "柳随风的个人网站"
 theme = "sweetcherry"
+googleAnalytics = "UA-127500067-1"
+disqusShortname = "disqus_w7TIDk1svw"
 
 [menu]
   [[menu.main]]
