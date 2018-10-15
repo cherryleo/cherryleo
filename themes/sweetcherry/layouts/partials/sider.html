@@ -1,13 +1,12 @@
 {{ $currentPage := . }}
-<nav class="nav flex-column">
+<nav>
 {{ if not .IsPage }}
   {{ range .Pages }}
-  <a class="nav-link active" href="{{.Permalink}}">{{.Title}}</a>
+  <a href="{{.Permalink}}">{{.Title}}</a>
   {{ end }}
 {{ else }}
   {{ range .Parent.Pages }}
-
-  <a {{ if eq $currentPage . }} class="nav-link disabled" {{ else }} class="nav-link active" {{end}}
+  <a {{ if eq $currentPage . }} class="disabled" {{ else }} class="active" {{end}}
    href="{{.Permalink}}">{{.Title}}</a>
   {{ end }}
 {{ end }}

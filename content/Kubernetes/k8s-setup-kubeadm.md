@@ -2,9 +2,8 @@
 title: "K8S - 安装 - kubeadm"
 date: 2018-10-09T11:39:43+08:00
 weight: 100
+description: "hello kubernetes"
 ---
-
-# K8S - 安装 - kubeadm
 
 ## 1. 简介
 
@@ -22,7 +21,7 @@ kubeadm是k8s官方工具，用来快速安装k8s集群。整套工具由kubeadm
 
 支持Ubuntu 16.04，CentOS 7+，amd64，master节点配置2核2G以上，安装以下软件包
 
-```console
+```bash
 # CentOS7
 $ sudo yum install ebtables ethtool iproute iptables socat util-linux wget -y
 
@@ -32,7 +31,7 @@ $ sudo apt-get install ebtables ethtool iproute iptables socat util-linux wget -
 
 #### 2.2 安装docker，docker版本小于等于17
 
-```console
+```bash
 # CentOS7安装docker-ce-17.03
 $ sudo wget -O - https://raw.githubusercontent.com/cherryleo/scripts/master/centos7-install-docker.sh | sudo sh
 

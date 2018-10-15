@@ -1,6 +1,6 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
-title = "X的个人网站"
+title = "柳随风的个人网站"
 theme = "sweetcherry"
 
 [menu]
@@ -9,6 +9,34 @@ theme = "sweetcherry"
     identifier = "kubernetes"
     pre = "<i class='fa fa-heart'></i>"
     url = "/kubernetes/"
+    weight = -120
+  
+  [[menu.main]]
+    name = "Go语言"
+    identifier = "go"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/go/"
+    weight = -110
+  
+  [[menu.main]]
+    name = "web开发"
+    identifier = "web"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/web/"
+    weight = -110
+  
+  [[menu.main]]
+    name = "其他"
+    identifier = "other"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/other/"
+    weight = -110
+  
+  [[menu.main]]
+    name = "Linux"
+    identifier = "linux"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/linux/"
     weight = -110
 
   [[menu.main]]

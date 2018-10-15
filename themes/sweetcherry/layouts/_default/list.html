@@ -1,14 +1,10 @@
 {{ define "main" }}
   {{ range .Pages }}
-  <div class="card mt-3">
-    <div class="card-header"><a href="{{.Permalink}}">{{.Title}}</a></div>
-    <div class="card-body">
-      <blockquote class="blockquote mb-0">
-        <p></p>
-        <footer class="blockquote-footer">{{.Date.Format "2006-01-02"}}</footer>
-      </blockquote>
-    </div>
+  <div class="card">
+    <h3><a href="{{.Permalink}}">{{.Title}}</a></h3>
+    <p><em>{{ .Description }}</em></p>
+    <footer class="blockquote-footer">最后更新：{{.Date.Format "2006-01-02"}}</footer>
+    <hr>
   </div>
   {{ end }}
 {{ end }}
-
