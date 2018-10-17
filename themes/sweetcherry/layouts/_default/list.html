@@ -1,10 +1,12 @@
 {{ define "main" }}
+<div class="list-content">
   {{ range .Pages }}
   <div class="card">
     <h3><a href="{{.Permalink}}">{{.Title}}</a></h3>
     <p><em>{{ .Description }}</em></p>
-    <footer class="blockquote-footer">最后更新：{{.Date.Format "2006-01-02"}}</footer>
+    <footer>最后更新：{{.Date.Format "2006-01-02"}}</footer>
     <hr>
   </div>
   {{ end }}
+</div>
 {{ end }}

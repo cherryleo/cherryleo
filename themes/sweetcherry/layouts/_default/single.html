@@ -1,8 +1,9 @@
 {{ define "main" }}
-  <article>
-    <h1>{{ .Title }}</h1>
-    <hr>
-    {{ .Content }}
-  </article>
+<article class="article-content">
+  <h1>{{ .Title }}</h1>
+  <hr>
+  {{ .Content }}
+  <hr>
   {{ template "_internal/disqus.html" . }}
+</article>
 {{ end }}

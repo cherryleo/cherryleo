@@ -1,5 +1,4 @@
 {{ $currentPage := . }}
-<nav>
 {{ if not .IsPage }}
   {{ range .Pages }}
   <a href="{{.Permalink}}">{{.Title}}</a>
@@ -10,5 +9,4 @@
    href="{{.Permalink}}">{{.Title}}</a>
   {{ end }}
 {{ end }}
-</nav>
 
