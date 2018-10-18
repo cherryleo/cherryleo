@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html>
-  {{- partial "head.html" . -}}
-  <body>
-    {{- partial "header.html" . -}}
-    <main>
-    {{- block "main" . }}
-    {{- end }}
-    </main>
-    {{- partial "footer.html" . -}}
-    {{ template "_internal/google_analytics_async.html" . }}
-  </body>
+{{- partial "head.html" . -}}
+
+<body>
+  {{- partial "header.html" . -}}
+  <main>
+    <span>柳随风的个人网站</span>
+    <span>博客</span>
+    <span>云原生，容器，devops，go语言，web开发</span>
+  </main>
+  {{- partial "footer.html" . -}}
+  {{ template "_internal/google_analytics_async.html" . }}
+</body>
+
 </html>
+
+<style type="text/css">
+  body {
+    background: black;
+  }
+
+  main {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-flow: column;
+  }
+
+  main span {
+    padding-top: 2em;
+    display: block;
+    color: white;
+    text-align: center;
+    font-size: 2.4rem;
+  }
+</style>

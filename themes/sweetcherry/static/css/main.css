@@ -51,6 +51,7 @@ a:hover {
   font-size: 1.2rem;
   display: inline-block;
 }
+
 .menu li {
   display: inline;
   margin: 2rem;
@@ -177,19 +178,36 @@ main {
   color: blue;
 }
 
+/* footer */
+.footer {
+  color: white;
+  background-color: black;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer p {
+  display: inline-block;
+}
+
 /* 移动端 */
 @media all and (max-width: 640px) {
   body {
     font-size: 13px;
   }
+
   main {
     flex-direction: column;
   }
 
-  main .article-content, main .list-content {
+  main .article-content,
+  main .list-content {
     order: 1;
   }
+
   main .sider {
     order: 2;
   }
- }
+}

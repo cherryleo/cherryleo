@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html>
-  {{- partial "head.html" . -}}
-  <body style="background-color: #fafafa">
-    {{- partial "header.html" . -}}
-    <main>
-        page not found
-    </main>
-    {{- partial "footer.html" . -}}
-  </body>
+{{- partial "head.html" . -}}
+
+<body>
+  {{- partial "header.html" . -}}
+  <main>
+    <span>404 Page Not Found!</span>
+  </main>
+  {{- partial "footer.html" . -}}
+  {{ template "_internal/google_analytics_async.html" . }}
+</body>
+
 </html>
+
+<style type="text/css">
+  body {
+    background: black;
+  }
+
+  main {
+    width: 100%;
+    margin: auto;
+  }
+
+  main span {
+    margin: auto;
+    margin-top: 10rem;
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+  }
+</style>
