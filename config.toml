@@ -11,38 +11,45 @@ disqusShortname = "116-85-49-164"
     identifier = "kubernetes"
     pre = "<i class='fa fa-heart'></i>"
     url = "/kubernetes/"
-    weight = -120
+    weight = -100
+  
+  [[menu.main]]
+    name = "Prometheus"
+    identifier = "prometheus"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/prometheus/"
+    weight = -95
+
+  [[menu.main]]
+    name = "Linux"
+    identifier = "linux"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/linux/"
+    weight = -90
   
   [[menu.main]]
     name = "Go语言"
     identifier = "go"
     pre = "<i class='fa fa-heart'></i>"
     url = "/go/"
-    weight = -110
+    weight = -80
   
   [[menu.main]]
     name = "web开发"
     identifier = "web"
     pre = "<i class='fa fa-heart'></i>"
     url = "/web/"
-    weight = -110
+    weight = -70
   
   [[menu.main]]
     name = "其他"
     identifier = "other"
     pre = "<i class='fa fa-heart'></i>"
     url = "/other/"
-    weight = -110
-  
-  [[menu.main]]
-    name = "Linux"
-    identifier = "linux"
-    pre = "<i class='fa fa-heart'></i>"
-    url = "/linux/"
-    weight = -110
+    weight = -60
 
   [[menu.main]]
     name = "关于"
     pre = "<i class='fa fa-road'></i>"
     url = "/about/"
-    weight = -100
+    weight = -50
