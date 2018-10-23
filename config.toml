@@ -12,6 +12,13 @@ disqusShortname = "116-85-49-164"
     pre = "<i class='fa fa-heart'></i>"
     url = "/kubernetes/"
     weight = -100
+
+  [[menu.main]]
+    name = "DevOps"
+    identifier = "devops"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/devops/"
+    weight = -98
   
   [[menu.main]]
     name = "Prometheus"
