@@ -59,21 +59,19 @@ header a:hover {
 }
 
 /* main */
-
 main {
+  margin: 80px auto 40px;
   min-height: 800px;
   width: 100%;
   display: flex;
   flex-flow: row;
 }
-
 .sider {
   flex: 1 6 20%;
   order: 1;
   display: flex;
   flex-flow: column;
 }
-
 .sider a {
   font-size: 0.9rem;
   padding-left: 1rem;
@@ -90,74 +88,58 @@ main {
 }
 
 /* list page */
-
 .card {
-  align-itrems: center;
+  align-items: center;
   margin-top: 1rem;
 }
-
 .card h3 {
   margin-top: 0;
 }
-
 .card a {
   color: inherit;
 }
-
 .card a:hover {
   border-bottom: 1px solid;
   background: #CDFEAA;
 }
-
 .card p {
   text-indent: 2rem;
   line-height: 1rem;
   font-size: 0.85rem;
 }
-
 .card footer {
   text-align: right;
 }
 
 /* article page */
-
 .article-content h1 {
   font-size: 1.5rem;
 }
-
 .article-content h2 {
   font-size: 1.4rem;
 }
-
 .article-content h3 {
   font-size: 1.3rem;
 }
-
 .article-content h4 {
   font-size: 1.2rem;
 }
-
 .article-content h5 {
   font-size: 1.1rem;
 }
-
 .article-content h6 {
   font-size: 1.0rem;
 }
-
 .article-content p {
   line-height: 1.6;
   text-indent: 2rem;
 }
-
 .article-content p::first-letter {
   text-transform: uppercase;
 }
-
 .article-content img {
   width: 80%;
 }
-
 .article-content pre {
   margin-left: 2rem;
   font-size: 1rem;
@@ -168,13 +150,11 @@ main {
   word-break: break-all;
   word-wrap: break-word;
 }
-
 .article-content code {
   font-family: 'consolas', sans-serif, monospace;
   font-size: .85rem;
   color: rgb(35, 255, 5);
 }
-
 .article-content a {
   color: blue;
 }
@@ -188,7 +168,6 @@ main {
   justify-content: center;
   align-items: center;
 }
-
 .footer p {
   display: inline-block;
 }
