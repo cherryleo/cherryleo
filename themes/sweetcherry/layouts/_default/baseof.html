@@ -4,11 +4,13 @@
   <body>
     {{- partial "header.html" . -}}
     <main>
-      <nav class="sider">
+      <nav class="left-sider">
         {{- partial "nav.html" . -}}
       </nav>
       {{- block "main" . }}
       {{- end }}
+      <nav class="right-sider">
+      </nav>
     </main>
     {{- partial "footer.html" . -}}
     {{ template "_internal/google_analytics_async.html" . }}
