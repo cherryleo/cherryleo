@@ -19,13 +19,6 @@ disqusShortname = "116-85-49-164"
     pre = "<i class='fa fa-heart'></i>"
     url = "/devops/"
     weight = -98
-  
-  [[menu.main]]
-    name = "Prometheus"
-    identifier = "prometheus"
-    pre = "<i class='fa fa-heart'></i>"
-    url = "/prometheus/"
-    weight = -95
 
   [[menu.main]]
     name = "Linux"
