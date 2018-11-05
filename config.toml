@@ -47,9 +47,3 @@ disqusShortname = "116-85-49-164"
     pre = "<i class='fa fa-heart'></i>"
     url = "/other/"
     weight = -60
-
-  [[menu.main]]
-    name = "关于"
-    pre = "<i class='fa fa-road'></i>"
-    url = "/about/"
-    weight = -50
