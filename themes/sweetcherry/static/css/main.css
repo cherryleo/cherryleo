@@ -126,6 +126,7 @@ main {
 /* article page */
 .article-content * {
   line-height: 2.4em;
+  margin: 4px 0;
 }
 .article-content h1 {
   font-size: 1.5em;
