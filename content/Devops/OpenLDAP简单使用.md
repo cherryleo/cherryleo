@@ -30,7 +30,7 @@ docker run -d --name my-openldap -p 389:389 \
 
 ![ldapadd.png](/openldap/ldapadd.png)
 
-```
+```bash
 # data.ldif
 # ou, 两个组织单元people和groups
 dn: ou=groups,dc=example,dc=com

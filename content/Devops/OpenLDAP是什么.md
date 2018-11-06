@@ -35,7 +35,7 @@ x.500协议属性
 
 ## 4. 安装
 使用docker本地安装验证，启动openldap容器
-```
+```bash
 docker run -d --name openldap \
   -p 389:389 \
   -e LDAP_ORGANISATION="My Company" \
@@ -44,7 +44,7 @@ docker run -d --name openldap \
   osixia/openldap:1.2.2
 ```
 启动phpldapadmin容器，该容器是ldap的web管理端，需要修改ldap的域名或者IP地址
-```
+```bash
 docker run -d --name phpldapadmin \ 
   -p 6443:443 \
   -e PHPLDAPADMIN_LDAP_HOSTS=$your_ldap_ip \

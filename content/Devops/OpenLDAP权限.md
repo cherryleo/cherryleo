@@ -39,7 +39,7 @@ acl的基本语法模式就是一个to后面跟多个by，to 属性 by 谁 权�
 新增acl策略，增加一个所有数据普通用户可读，否则phpldapadmin登陆无法读取信息，也就无法更改自己的密码。更好的方
 式是能够提供自服务式的密码管理，仅供用户修改密码。
 
-```
+```bash
 # acl.ldif
 dn: olcDatabase={1}mdb,cn=config
 changetype: modify
