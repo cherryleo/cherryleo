@@ -225,7 +225,11 @@ main {
   main .list-content {
     order: 1;
   }
-  main .sider {
+  .article-content img {
+    max-width: 92%;
+    max-height: 92%;
+  }
+  main .left-sider {
     order: 2;
   }
 }
