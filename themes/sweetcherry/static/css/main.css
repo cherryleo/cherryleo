@@ -153,6 +153,10 @@ main {
 .article-content p::first-letter {
   text-transform: uppercase;
 }
+.article-content img {
+  max-width: 95%;
+  max-height: 95%;
+}
 .article-content pre {
   margin-left: 2em;
   font-size: 1em;
@@ -224,10 +228,6 @@ main {
   main .article-content,
   main .list-content {
     order: 1;
-  }
-  .article-content img {
-    max-width: 92%;
-    max-height: 92%;
   }
   main .left-sider {
     order: 2;
