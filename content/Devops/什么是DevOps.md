@@ -16,8 +16,6 @@ HashiCorp定义DevOps一共七个阶段，Build、Test、Package、Provision、S
 
 ## 2. DevOps工具链
 
-![tools-1.png](/devops/tools-1.png)
-
 ![tools-2.png](/devops/tools-2.png)
 
 ## 3. DevOps的意义
