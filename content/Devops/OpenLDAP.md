@@ -1,6 +1,6 @@
 ---
 weight: 1000
-title: "OpenLDAP是什么"
+title: "OpenLDAP"
 date: "2018-10-22"
 lastmod: "2018-10-22"
 description:  "openldap是什么，如何部署openldap，有哪些依赖，开放哪些端口，简单使用openldap"

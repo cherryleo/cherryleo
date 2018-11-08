@@ -1,6 +1,6 @@
 ---
 weight: 100
-title: "什么是DevOps"
+title: "DevOps"
 date: "2018-11-07"
 lastmod: "2018-11-07"
 description:  "什么是DevOps，DevOps的定义，DevOps流程、工具链，对DevOps的理解"

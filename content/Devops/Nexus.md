@@ -1,6 +1,6 @@
 ---
 weight: 700
-title: "Nexus是什么"
+title: "Nexus"
 date: "2018-11-07"
 lastmod: "2018-11-07"
 description:  "nexus是什么，如何部署nexus，有哪些依赖，开放哪些端口，简单使用nexus"
