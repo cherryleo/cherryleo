@@ -1,47 +1,42 @@
 ---
-title: "K8S - 安装 - kubeadm"
-date: 2018-10-09T11:39:43+08:00
-weight: 100
-description: "hello kubernetes"
+weight: 1100
+title: "使用Kubeadm安装集群"
+date: "2018-11-12"
+lastmod: "2018-11-12"
+description:  "Kubernetes集群安装，使用Kubeadm安装Kubernetes集群"
+categories:  ["kubernetes"]
+tags: ["kubernetes"]
 ---
 
-## 1. 简介
+## 简介
 
-kubeadm是k8s官方工具，用来快速安装k8s集群。整套工具由kubeadm，kubelet，kubernetes-cni和kubectl包组成，除kubelet以二进制方式运行外，其余组件均作为k8s静态pod启动（镜像均托管谷歌与gcr.io仓库）。
+Kubeadm是kubernetes官方工具，用来快速安装kubernetes集群。整套工具由kubeadm，kubelet，kubernetes-cni和kubectl包组成，
+除kubelet以二进制方式运行外，其余组件均作为kubernetes静态pod启动（镜像均托管谷歌与gcr.io仓库）。
 
-目前kubeadm支持通过配置文件imageRepository指定镜像仓库地址，个人在使用和学习过程中同步一些官方镜像于腾讯云镜像仓库，并写了一些自动部署的脚本，以便快速部署k8s集群。
+目前kubeadm支持通过配置文件imageRepository指定镜像仓库地址，个人在使用和学习过程中同步一些官方镜像于腾讯云镜像仓库，并写了
+一些自动部署的脚本，以便快速部署kubernetes集群。
 
 本文档详细介绍使用kubadm部署k8s集群完整步骤
 
+## 依赖配置
 
-
-## 2.依赖
-
-#### 2.1 操作系统
-
-支持Ubuntu 16.04，CentOS 7+，amd64，master节点配置2核2G以上，安装以下软件包
+系统发行版CentOS 7+，amd64，master节点配置2核2G以上，需要安装以下软件包
 
 ```bash
 # CentOS7
 $ sudo yum install ebtables ethtool iproute iptables socat util-linux wget -y
-
-# Ubuntu16.04
-$ sudo apt-get install ebtables ethtool iproute iptables socat util-linux wget -y
 ```
 
-#### 2.2 安装docker，docker版本小于等于17
+安装docker，使用脚本自动安装docker-ce-17，已有docker可跳过此步
 
 ```bash
 # CentOS7安装docker-ce-17.03
 $ sudo wget -O - https://raw.githubusercontent.com/cherryleo/scripts/master/centos7-install-docker.sh | sudo sh
-
-# Ubuntu16.04安装docker-ce-17.03
-$ sudo wget -O - https://raw.githubusercontent.com/cherryleo/scripts/master/ubuntu16.04-install-docker.sh | sudo sh
 ```
 
-#### 2.3 系统设置
+系统设置，设置环境变量指定安装Kubernetes版本，默认1.10版本
 
-```console
+```bash
 # 关闭swap
 $ sudo swapoff -a
 
@@ -56,23 +51,23 @@ $ sudo sysctl net.bridge.bridge-nf-call-iptables=1
 $ export KUBERNETES_VERSION="1.10.0"
 ```
 
-#### 2.4 安装kubeadm
+脚本自动安装kubeadm，kubeadm的rpm包同步于腾讯云
 
-```console
-$ wget -O - https://raw.githubusercontent.com/cherryleo/cherryleo/master/install-k8s-packages.sh | sudo -E bash
+```bash
+$ wget -O - https://raw.githubusercontent.com/cherryleo/scripts/master/install-k8s-packages.sh | sudo -E bash
 ```
 
-#### 2.5 配置kubeadm
+## Kubeadm配置
 
-##### 2.5.1 查看docker cgroup driver
+查看docker cgroup driver
 
-```console
+```bash
 $ sudo docker info | grep -i cgroup
 ```
 
-##### 2.5.2 修改kubeadm配置文件 
+修改kubeadm配置文件，在配置文件中指定docker cgroup参数与系统一致，指定集群dns地址和域名
 
-```shell
+```bash
 # 配置文件路径 /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 # 替换下面内容到10-kubeadm.conf文件中，注意修改cgroup参数与docker一致
 [Service]
@@ -90,22 +85,19 @@ Environment="KUBE_PAUSE=--pod-infra-container-image=ccr.ccs.tencentyun.com/cherr
 ExecStart=
 ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELET_SYSTEM_PODS_ARGS $KUBELET_NETWORK_ARGS $KUBELET_DNS_ARGS $KUBELET_AUTHZ_ARGS $KUBELET_CGROUP_ARGS $KUBELET_CADVISOR_ARGS $KUBELET_CERTIFICATE_ARGS $KUBE_PAUSE $KUBELET_EXTRA_ARGS
 ```
-##### 2.5.3 重新载入kubelet 
 
-```console
+重新载入kubelet 
+
+```bash
 $ sudo systemctl daemon-reload
 $ sudo systemctl stop kubelet
 ```
 
+## Master节点安装
 
+创建kubeadm启动配置文件，需要修改advertiseAddress为本机IP地址
 
-## 3. kubeadm安装k8s集群
-
-#### 3.1 安装k8s master节点
-
-##### 3.1.1 配置文件
-
-```console
+```bash
 # 创建master config.yaml文件，<ip>改为本机IP地址
 $ cat >config.yaml <<EOF
 apiVersion: kubeadm.k8s.io/v1alpha1
@@ -121,34 +113,36 @@ kubernetesVersion: v${KUBERNETES_VERSION}
 EOF
 ```
 
-##### 3.1.2 执行安装
+kubeadm安装指令
 
-```console
+```bash
 $ sudo -E kubeadm init --config=config.yaml
 ```
 
-##### 3.1.3 # 安装成功后，创建kubectl配置文件
+安装成功后，配置kubectl
 
-```console
+```bash
 $ mkdir -p $HOME/.kube
 $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-##### 3.1.4 安装插件
+使用kubectl安装插件
 
-```console
+```bash
 # 网络插件安装，此处flannel网络
-$ kubectl apply -f https://raw.githubusercontent.com/cherryleo/k8s-apps/master/k8s-flannel/flannel.yaml
-# dashboard安装
-$ kubectl apply -f https://raw.githubusercontent.com/cherryleo/k8s-apps/master/k8s-dashboard/kubernetes-dashboard.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/cherryleo/yamls/master/k8s-flannel/flannel.yaml
+
+# dashboard插件安装
+$ kubectl apply -f https://raw.githubusercontent.com/cherryleo/yamls/master/k8s-dashboard/kubernetes-dashboard.yaml
+
 # 创建admin用户
-$ kubectl apply -f https://raw.githubusercontent.com/cherryleo/k8s-apps/master/k8s-dashboard/admin-user.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/cherryleo/yamls/master/k8s-dashboard/admin-user.yaml
 ```
 
-##### 3.1.5 查看集群状态
+查看集群状态
 
-```console
+```bash
 $ kubectl get nodes
 NAME           STATUS    ROLES     AGE       VERSION
 10-255-0-196   Ready     master    47m       v1.9.7
@@ -164,41 +158,35 @@ kube-system   kube-proxy-bbt6k                       1/1       Running   0      
 kube-system   kube-scheduler-10-255-0-196            1/1       Running   0          15m
 ```
 
-##### 3.1.6 访问[https://ip:30080](https://ip:30080)进入登陆页面
+访问[https://master节点IP地址:30080](https://master节点IP地址:30080)进入登陆页面   
 
-![](https://fileserver-1253732882.cos.ap-chongqing.myqcloud.com/pic/k8s-dashboard-login.png)
+![dashboard-login.png](/kubernetes/dashboard-login.png)
 
-```console
-# 获取token
+获取登陆token
+```bash
 $ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
 ```
 
-![](https://fileserver-1253732882.cos.ap-chongqing.myqcloud.com/pic/k8s-dashboard-token.png)
+![dashboard-token.png](/kubernetes/dashboard-token.png)
 
-![](https://fileserver-1253732882.cos.ap-chongqing.myqcloud.com/pic/k8s-dashboard.png)
+![dashboard-index.png](/kubernetes/dashboard-index.png)
 
-#### 3.2 node节点安装
+## Node节点安装
 
-##### 3.2.1 执行第二大步骤，进行node节点初始化
+在Node节点重新执行依赖配置步骤，配置好系统后，在master节点获取加入集群的token信息，并通过token把node节点加入集群
 
-##### 3.2.2 获取加入集群token信息
-
-```console
+```bash
 # 在mster节点执行
 $ sudo kubeadm token create --print-join-command
 kubeadm join --token fddd11.35180a3132aa60b6 10.255.0.196:6443 --discovery-token-ca-cert-hash sha256:3c88d7639604c94304274bfe741e70039909c63da4c9db30229e987d7f443f34
-```
 
-##### 3.2.3 把node节点加入集群
-
-```console
 # 在node节点执行
 $ sudo kubeadm join --token fddd11.35180a3132aa60b6 10.255.0.196:6443 --discovery-token-ca-cert-hash sha256:3c88d7639604c94304274bfe741e70039909c63da4c9db30229e987d7f443f34
 ```
 
-##### 3.2.4 在master节点查看集群状态
+在master节点查看集群状态
 
-```console
+```bash
 $ kubectl get nodes
 NAME           STATUS    ROLES     AGE       VERSION
 10-255-0-196   Ready     master    47m       v1.9.7

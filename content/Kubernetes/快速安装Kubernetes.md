@@ -1,45 +1,39 @@
 ---
-title: "K8S - 安装 - 一键快速安装"
-date: 2018-10-09T11:39:43+08:00
-weight: 110
+weight: 1000
+title: "快速安装Kubernetes"
+date: "2018-11-12"
+lastmod: "2018-11-12"
+description:  "一键快速安装Kubernetes"
+categories:  ["kubernetes"]
+tags: ["kubernetes"]
 ---
-
-# K8S - 安装 - 一键快速安装
 
 ## 1. 简介
 
-一键安装kubernetes master节点脚本，基于kubeadm方式安装集群，仅供测试使用
-
-默认安装v1.10版本，所有资源均托管于腾讯云，无需翻墙
-
-
+一键安装kubernetes master节点脚本，基于kubeadm方式安装集群，本地开发测试使用，默认安装v1.10版本，所有资源均托管于腾讯云，无需翻墙
 
 ## 2. 环境要求
 
-CentOS7+，Ubuntu16.04系统，安装过程中会自动安装docker17.03
-
-
+CentOS7+，安装过程中会自动安装docker17.03
 
 ## 3. 安装
 
 ```bash
-$ wget -O - https://raw.githubusercontent.com/cherryleo/cherryleo/master/install-k8s-cluster.sh |sudo bash
+$ wget -O - https://raw.githubusercontent.com/cherryleo/scripts/master/install-k8s-cluster.sh |sudo bash
 ```
-
-
 
 ## 4. 插件安装
 
 ```bash
 # 网络插件安装，此处flannel网络
-$ kubectl apply -f https://raw.githubusercontent.com/cherryleo/k8s-apps/master/k8s-flannel/flannel.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/cherryleo/yamls/master/k8s-flannel/flannel.yaml
+
 # dashboard安装
-$ kubectl apply -f https://raw.githubusercontent.com/cherryleo/k8s-apps/master/k8s-dashboard/kubernetes-dashboard.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/cherryleo/yamls/master/k8s-dashboard/kubernetes-dashboard.yaml
+
 # 创建admin用户
-$ kubectl apply -f https://raw.githubusercontent.com/cherryleo/k8s-apps/master/k8s-dashboard/admin-user.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/cherryleo/yamls/master/k8s-dashboard/admin-user.yaml
 ```
-
-
 
 ## 5. 验证
 
