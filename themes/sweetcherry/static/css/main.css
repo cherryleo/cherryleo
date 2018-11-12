@@ -160,6 +160,7 @@ main {
 .article-content pre {
   margin-left: 2em;
   font-size: 1em;
+  white-space: pre-wrap; 
 }
 .article-content code {
   font-family: 'consolas', sans-serif, monospace;
