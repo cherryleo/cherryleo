@@ -1,8 +1,14 @@
+---
+weight: 3000
+title: "NFS持久化存储"
+date: "2018-11-12"
+lastmod: "2018-11-12"
+description:  "使用NFS作为Kubernetes持久化存储"
+categories:  ["kubernetes"]
+tags: ["kubernetes"]
+---
 
-
-# Kubernetes NFS Client
-
-## 1. 简介
+## 简介
 
 使用NFS作为k8s集群存储
 
@@ -10,25 +16,21 @@
 
 pv创建后，存储目录格式为 `${namespace}-${pvcName}-${pvName}`
 
-pv删除后，存储会以`archieved-${namespace}-${pvcName}-${pvName}`格式存储于磁盘上
+pv删除后，存储会以 `archieved-${namespace}-${pvcName}-${pvName}` 格式存储于磁盘上
 
-
-
-## 2. 图 
+## 关系图
 
 ![](https://fileserver-1253732882.cos.ap-chongqing.myqcloud.com/pic/k8s-storage-nfs.png)
 
+## NFS安装 
 
-
-## 3. NFS安装 
-
-#### 3.1 CentOS7安装NFS
+CentOS7安装NFS
 
 ```console
 # yum install nfs-utils nfs-utils-lib
 ```
 
-#### 3.2 启动NFS
+ 启动NFS
 
 ```console
 # chkconfig nfs on 
@@ -36,7 +38,7 @@ pv删除后，存储会以`archieved-${namespace}-${pvcName}-${pvName}`格式存
 # service nfs start
 ```
 
-#### 3.3 配置网络共享目录
+配置网络共享目录
 
 ```console
 # mkdir -p /var/data/k8s-nfs-storage 
@@ -46,18 +48,16 @@ EOF
 exportfs -a
 ```
 
-#### 3.4 查看网络共享目录
+查看网络共享目录
 
 ```console
 # showmount -e 10.255.0.110
 /var/data/k8s-nfs-storage  *
 ```
 
+## Kubernetes配置NFS存储 
 
-
-## 4. K8S配置NFS存储 
-
-#### 4.1 创建ServiceAccount
+创建ServiceAccount
 
 ```yaml
 # serviceaccount.yaml
@@ -71,7 +71,7 @@ metadata:
 # kubectl create -f serviceaccount.yaml
 ```
 
-#### 4.2 RBAC认证配置，若未启用RBAC，跳过此步
+RBAC认证配置，若未启用RBAC，跳过此步
 
 ```yaml
 # clusterrole.yaml
@@ -118,7 +118,7 @@ roleRef:
 # kubectl create -f clusterrolebinding.yaml
 ```
 
-#### 4.3 创建Deployment
+创建Deployment
 
 ```yaml
 # deployment.yaml
@@ -156,7 +156,7 @@ spec:
             path: /var/data/k8s-nfs-storage  # FIXME: NFS网络共享目录
 ```
 
-#### 4.4 创建StorageClass
+创建StorageClass
 
 ```yaml
 # storageclass.yaml
@@ -171,19 +171,17 @@ provisioner: 10.255.0.110/nfs # 此处值需和4.3步骤中deployment.yaml文件
 # kubectl create -f storageclass.yaml
 ```
 
+## 验证
 
+查看storageclass
 
-### 5. 验证
-
-#### 5.1 查看storageclass
-
-```Console
+```console
 [root@10-255-0-196 ~]# kubectl get storageclass
 NAME                  PROVISIONER        AGE
 managed-nfs-storage   10.255.0.110/nfs   20m
 ```
 
-#### 5.2 创建pvc
+创建pvc
 
 ```yaml
 # pvc.yaml
@@ -205,7 +203,7 @@ spec:
 persistentvolumeclaim "busybox-storage" created
 ```
 
-#### 5.3 创建pod使用pvc
+创建pod使用pvc
 
 ```yaml
 # busybox.yaml
@@ -235,7 +233,7 @@ spec:
 # kubectl create -f busybox.yaml
 ```
 
-#### 5.4 查看pvc&pv
+查看pvc&pv
 
 ```console
 # kubectl get pv
@@ -246,7 +244,7 @@ NAME              STATUS    VOLUME                                     CAPACITY 
 busybox-storage   Bound     pvc-98b28be3-61c0-11e8-8c8e-0050563e239d   1Mi        RWX            managed-nfs-storage   12s
 ```
 
-#### 5.5 查看NFS服务器目录文件
+查看NFS服务器目录文件
 
 ```console
 # cd /var/data/k8s-nfs-storage/

@@ -1,15 +1,21 @@
-# k8s-安全-TLS双向加密认证
+---
+weight: 1250
+title: "TLS双向加密认证"
+date: "2018-11-12"
+lastmod: "2018-11-12"
+description:  "TLS双向加密认证，访问apiserver，证书制作与认证"
+categories:  ["kubernetes"]
+tags: ["kubernetes"]
+---
 
-## 1. 简介
+## 简介
 
 安全第一步，尝试与k8s建立连接（也就是与apiserver建立连接），使用apiserver的restful接口对k8s集群资源进行查看或者操作，使用tls进行双向加密认证，同时加密通信流量，k8s默认使用的安全端口是6443。
 
 TLS（传输层安全协议）是一种安全协议（前身是SSL），用于加密通信流量和身份认证。身份认证使用非对称加密，非对称加密使用公钥加密只能使用私钥解密，反之亦然。
 
-
-
-## 2. TLS认证过程
-
+## TLS认证过程
+```
 第一步，客户端生成随机数RNc，服务端生成随机数RNs，相互发送给对方
 
 ​	开始之前：
@@ -47,16 +53,13 @@ TLS（传输层安全协议）是一种安全协议（前身是SSL），用于�
 ​		服务端（公钥，私钥，RNc，RNs，PMS，客户端公钥），PMS是服务端通过私钥解密出来
 
 ​	计算通信加密密码 MS = Calculate(RNc, RNs, PMS)，后续通信使用该密码进行对称加密
+```
 
-
-
-## 3. 关于证书
+## 关于证书
 
 证书通常由权威机构进行签名，做证书的时候需要生成证书请求，然后由ca证书进行签名。可以自己作为ca证书作为权威机构，然后给自己的证书进行签名，也就是制作自签名证书，在公司内部或内网环境经常使用这种方式。
 
-
-
-## 4. 使用
+## 使用
 
 生成rootCA.key，然后制作rootCA.crt，制作证书需要填写一些基础信息（国家，地区，公司，部门之类）
 
@@ -99,9 +102,7 @@ An optional company name []:
 openssl x509 -req -in k8s-apiserver.csr -CA rootCA.crt -CAkey rootCA.key -CAcreateserial -out k8s-apiserver.crt -days 500 -sha256
 ```
 
-
-
-## 5. 验证
+## 验证
 
 使用刚才制作的证书启动kube-apiserver，单独启动apiserver仅做tls认证测试
 
@@ -171,9 +172,7 @@ curl https://192.168.0.104:6443 --cacert rootCA.crt --cert client.crt --key clie
 }
 ```
 
-
-
-## 6. 其他 
+## 其他 
 
 可以把rootCA.crt导入浏览器的证书颁发机构，这样通过浏览器访问k8s就不会出现非安全网站提示
 
