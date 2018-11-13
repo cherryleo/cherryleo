@@ -160,7 +160,10 @@ main {
 .article-content pre {
   margin-left: 2em;
   font-size: 1em;
-  white-space: pre-wrap; 
+  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
 }
 .article-content code {
   font-family: 'consolas', sans-serif, monospace;
