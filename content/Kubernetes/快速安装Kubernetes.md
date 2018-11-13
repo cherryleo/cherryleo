@@ -8,21 +8,21 @@ categories:  ["kubernetes"]
 tags: ["kubernetes"]
 ---
 
-## 1. 简介
+## 简介
 
 一键安装kubernetes master节点脚本，基于kubeadm方式安装集群，本地开发测试使用，默认安装v1.10版本，所有资源均托管于腾讯云，无需翻墙
 
-## 2. 环境要求
+## 环境要求
 
 CentOS7+，安装过程中会自动安装docker17.03
 
-## 3. 安装
+## 安装
 
 ```bash
 $ wget -O - https://raw.githubusercontent.com/cherryleo/scripts/master/install-k8s-cluster.sh |sudo bash
 ```
 
-## 4. 插件安装
+## 插件安装
 
 ```bash
 # 网络插件安装，此处flannel网络
@@ -35,7 +35,7 @@ $ kubectl apply -f https://raw.githubusercontent.com/cherryleo/yamls/master/k8s-
 $ kubectl apply -f https://raw.githubusercontent.com/cherryleo/yamls/master/k8s-dashboard/admin-user.yaml
 ```
 
-## 5. 验证
+## 验证
 
 ```bash
 $ kubectl get nodes
