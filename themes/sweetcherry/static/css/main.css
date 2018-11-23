@@ -150,6 +150,10 @@ main {
   line-height: 1.6;
   text-indent: 2em;
 }
+.article-content p * {
+  line-height: 1.6;
+  text-indent: 2em;
+}
 .article-content p::first-letter {
   text-transform: uppercase;
 }
