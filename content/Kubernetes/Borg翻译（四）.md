@@ -1,12 +1,3 @@
----
-weight: 10
-title: "Borg翻译（一）"
-date: "2018-11-12"
-lastmod: "2018-11-12"
-description:  "Borg是谷歌2015年发表的关于大规模集群管理的论文，Kubernetes是谷歌Borg系统的开源实现"
-categories:  ["kubernetes"]
-tags: ["kubernetes"]
----
 
 ## 利用率
 
