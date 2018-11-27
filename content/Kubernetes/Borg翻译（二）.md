@@ -3,7 +3,7 @@ weight: 12
 title: "Borg翻译（二）"
 date: "2018-11-22"
 lastmod: "2018-11-22"
-description:  "Borg是谷歌2015年发表的关于大规模集群管理的论文，Kubernetes是谷歌Borg系统的开源实现"
+description:  "Borg如何管理和分配集群硬件资源，Borg上的任务如何访问与监控，任务的优先级如何分配"
 categories:  ["kubernetes"]
 tags: ["kubernetes"]
 ---
