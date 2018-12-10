@@ -18,7 +18,7 @@ disqusShortname = "116-85-49-164"
     identifier = "devops"
     pre = "<i class='fa fa-heart'></i>"
     url = "/devops/"
-    weight = -98
+    weight = -85
 
   [[menu.main]]
     name = "Linux"
@@ -33,13 +33,6 @@ disqusShortname = "116-85-49-164"
     pre = "<i class='fa fa-heart'></i>"
     url = "/go/"
     weight = -80
-  
-  [[menu.main]]
-    name = "web开发"
-    identifier = "web"
-    pre = "<i class='fa fa-heart'></i>"
-    url = "/web/"
-    weight = -70
   
   [[menu.main]]
     name = "其他"

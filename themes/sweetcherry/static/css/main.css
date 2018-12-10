@@ -74,6 +74,7 @@ main {
   order: 1;
   display: flex;
   flex-flow: column;
+  background-color: #e6f2ff;
 }
 .left-sider a {
   font-size: 0.9rem;
