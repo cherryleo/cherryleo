@@ -2,8 +2,8 @@ baseURL = "http://cherryleo.com"
 languageCode = "zh-CN"
 title = "柳随风的个人网站"
 theme = "sweetcherry"
-googleAnalytics = "UA-127500067-1"
-disqusShortname = "116-85-49-164"
+# googleAnalytics = "UA-127500067-1"
+# disqusShortname = "116-85-49-164"
 
 [menu]
   [[menu.main]]
